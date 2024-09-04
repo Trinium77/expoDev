@@ -22,8 +22,6 @@ export default function Index() {
     setView3((state) => state + 1);
   };
 
-  console.log("état change");
-
   return (
     <View
       style={{
