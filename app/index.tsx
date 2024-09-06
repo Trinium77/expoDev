@@ -32,15 +32,28 @@ export default function Index() {
     return (
       <>
         <Text>Titre: {item.title}</Text>
+        <Text>Date de sortie: {item.release_date}</Text>
+        <Text>Est un film pour adulte: {item.adult ? "oui" : "non"}</Text>
         <Text>Résumé: {item.overview}</Text>
       </>
     );
   };
 
+  const renderSeparator = () => <View style={{ borderWidth: 0.3, marginVertical: 5 }} />;
+
+  const renderHeaderFooter = () => <View style={{ margin: 10 }} />;
+
+  const renderEmptyComponent = () => (
+    <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <Text>Liste vide</Text>
+    </View>
+  );
+
   return (
     <View
       style={{
         flex: 1,
+        backgroundColor: "white",
       }}>
       <View style={styles.row}>
         <TextInput
@@ -55,9 +68,14 @@ export default function Index() {
         style={{
           flex: 5,
         }}>
-        <View style={styles.view3}>
-          <Text style={styles.text}>{display}</Text>
-        </View>
+        <FlatList
+          data={movies.results}
+          renderItem={renderItem}
+          ItemSeparatorComponent={renderSeparator}
+          ListFooterComponent={renderHeaderFooter()}
+          ListHeaderComponent={renderHeaderFooter()}
+          ListEmptyComponent={renderEmptyComponent()}
+        />
       </View>
     </View>
   );
