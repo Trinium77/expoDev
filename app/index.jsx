@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, Pressable } from "react-native";
+import { Link } from "expo-router";
 
 import ListItem from "@/components/ListItem";
 import EmptyList from "@/components/EmptyList";
@@ -13,7 +14,13 @@ export default function Index() {
 
   const onPressButton = () => {};
 
-  const renderItem = ({ item }) => <ListItem item={item} />;
+  const renderItem = ({ item }) => (
+    <Link href={{ pathname: "/[id]", params: { id: item.id } }} asChild>
+      <Pressable>
+        <ListItem item={item} />
+      </Pressable>
+    </Link>
+  );
 
   const renderSeparator = () => <View style={{ marginVertical: 3 }} />;
 
