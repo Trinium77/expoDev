@@ -2,32 +2,58 @@ import { useState, useEffect } from "react";
 import { View, Text, Image, StyleSheet, ActivityIndicator } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 
-import { movies } from "@/scripts/movies";
+import { token } from "@/scripts/tools";
+
+const config = {
+  method: "GET",
+  headers: {
+    Accept: "application/json",
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  },
+};
 
 export default function Detail() {
   const { id } = useLocalSearchParams();
-  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [movieDetail, setMovieDetail] = useState(null);
+
+  const getMovieDetail = async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}?language=fr-FR`,
+        config,
+      );
+      return await response.json();
+    } catch (e) {}
+  };
 
   useEffect(() => {
-    const selectedMovie = movies.results.find((movie) => movie.id === parseInt(id));
-    setMovie(selectedMovie);
-  }, [id]);
+    (async () => {
+      const m = await getMovieDetail();
 
-  if (!movie) {
-    return <Text>Loading...</Text>;
-  }
+      setMovieDetail(m);
+      setLoading(false);
+    })();
+  }, [id]);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{movie.title}</Text>
-      <Image
-        source={{ uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` }}
-        style={styles.poster}
-      />
-      <Text style={styles.description}>{movie.overview}</Text>
-      <Text style={styles.details}>Release Date: {movie.release_date}</Text>
-      <Text style={styles.details}>Vote Average: {movie.vote_average}</Text>
-      <Text style={styles.details}>Vote Count: {movie.vote_count}</Text>
+      {loading && <ActivityIndicator animating={loading} size={"large"} hidesWhenStopped={true} />}
+
+      {movieDetail != null ? (
+        <>
+          <Text style={styles.title}>{movieDetail.title}</Text>
+          <Image
+            source={{ uri: `https://image.tmdb.org/t/p/w500${movieDetail.backdrop_path}` }}
+            style={styles.poster}
+          />
+          <Text style={styles.description}>{movieDetail.overview}</Text>
+          <Text style={styles.details}>Date de sorite: {movieDetail.release_date}</Text>
+          <Text style={styles.details}>Moyenne des vote: {movieDetail.vote_average}</Text>
+          <Text style={styles.details}>Nombre de vote: {movieDetail.vote_count}</Text>
+        </>
+      ) : null}
     </View>
   );
 }
