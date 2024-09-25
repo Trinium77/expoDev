@@ -1,9 +1,12 @@
 {
   "expo": {
-    "name": "startapp",
-    "slug": "startapp",
-    "version": "1.0.0",
+    "name": "My Movies App",
+    "description": "Ma première application en react-native avec Expo",
+    "slug": "my-movies-app",
+    "version": "0.0.1",
     "orientation": "portrait",
+    "privacy": "hidden",
+    "githubUrl": "https://github.com/parice02/mobile-dev-cours-tp-2024-l2.git",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
@@ -13,13 +16,16 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.movie.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.movie.app",
+      "versionCode": 1
     },
     "web": {
       "bundler": "metro",
