@@ -1,50 +1,37 @@
-# Welcome to your Expo app 👋
+# Application de Consultation des Livres
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Cette application mobile permet de consulter et rechercher des livres à partir d'une base de données. Elle est développée avec **React Native** et utilise l'API `TheMovieDB` pour récupérer les informations.
 
-## Get started
+## Fonctionnalités
 
-1. Install dependencies
+- **Recherche de livres** : Vous pouvez rechercher un livre par titre grâce à une barre de recherche dynamique.
+- **Affichage des détails des livres** : Pour chaque livre, il est possible de consulter les détails tels que le titre, la date de sortie, le résumé, et la note.
+- **Pagination** : Les livres sont chargés progressivement lorsque l'utilisateur atteint la fin de la liste.
 
-   ```bash
-   npm install
-   ```
+## Installation
 
-2. Start the app
+1. Clonez ce dépôt.
+2. Installez les dépendances avec `npm install`.
+3. Exécutez l'application avec `npm start`.
 
-   ```bash
-    npx expo start
-   ```
+## Aperçu de l'application
 
-In the output, you'll find options to open the app in a
+### Vue d'Index des Livres
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+![Vue Index des Livres](./assets/images/index.png)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Vue Détails d'un Livre
 
-## Get a fresh project
+![Vue Détails d'un Livre](./assets/images/detail.png)
 
-When you're ready, run:
+## Dépendances principales
 
-```bash
-npm run reset-project
-```
+- React Native
+- Expo
+- Expo Router
+- API TheMovieDB
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Comment utiliser
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+1. Sur la page d'accueil, une liste de livres est affichée avec une barre de recherche.
+2. En cliquant sur un livre, vous accédez aux détails de ce dernier.
